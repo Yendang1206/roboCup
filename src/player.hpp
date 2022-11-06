@@ -6,16 +6,7 @@
 
 using namespace std;
 
-vector<string> split2(string &s, char delim){
-    vector<string> output;
-    stringstream ss(s);
-    string sub;
-    
-    while(getline(ss, sub, delim)){
-        output.push_back(sub);
-    }
-    return output;
-}
+
 
 class Player{
 
@@ -30,7 +21,7 @@ class Player{
 	Player();
 	
 	Player(string name, int x, int y);
-	
+	vector<string> split(string &s, char delim);
 	
 	void set_x(int x);
         void set_y(int y);

@@ -9,6 +9,18 @@ Player::Player(){
     
 }
 
+vector<string> Player::split(string &s, char delim){
+    vector<string> output;
+    stringstream ss(s);
+    string sub;
+    
+    while(getline(ss, sub, delim)){
+        output.push_back(sub);
+    }
+    return output;
+}
+
+
 Player::Player(string name,int x, int y){
     this->name = name;
     this->x = x;
@@ -31,17 +43,19 @@ void Player::set_linedata(string line){
      
      string label;
      vector<string> linedata;
+     vector<string> data;
      string labelposition;
+     
      
      
      cout<<"line thu 1: "<<line<<endl;
         
-     linedata = split2(line, ':'); //vector
+     linedata = this->split(line, ':'); //vector
      label = linedata.at(0);  //string
      this->name = label;  
      cout<<"lable cua dong thu 1: "<<label<<endl;
      labelposition = linedata.at(1); //string
-     data = split2(labelposition, ',');
+     data = this->split(labelposition, ',');
      
      this->x = stoi(data.at(0));
      this->y = stoi(data.at(1)); 

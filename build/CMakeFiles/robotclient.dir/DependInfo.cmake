@@ -11,7 +11,6 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/home/yd/Documents/robots_class_OOP/src/client.cpp" "CMakeFiles/robotclient.dir/src/client.cpp.o" "gcc" "CMakeFiles/robotclient.dir/src/client.cpp.o.d"
   "/home/yd/Documents/robots_class_OOP/src/player.cpp" "CMakeFiles/robotclient.dir/src/player.cpp.o" "gcc" "CMakeFiles/robotclient.dir/src/player.cpp.o.d"
   "/home/yd/Documents/robots_class_OOP/src/socket.cpp" "CMakeFiles/robotclient.dir/src/socket.cpp.o" "gcc" "CMakeFiles/robotclient.dir/src/socket.cpp.o.d"
-  "/home/yd/Documents/robots_class_OOP/src/state.cpp" "CMakeFiles/robotclient.dir/src/state.cpp.o" "gcc" "CMakeFiles/robotclient.dir/src/state.cpp.o.d"
   )
 
 # Targets to which this target links.

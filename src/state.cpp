@@ -1,10 +1,10 @@
 #include "state.hpp"
 
-State()::State(){
+State::State(){
 
 }
        
-void State()::set_state(string data){
+void State::set_state(string data){
     cout<<"call set_state: "<<data<<endl;
 } 
 string State()::get_position(void){
@@ -13,6 +13,6 @@ string State()::get_position(void){
     return position;
 }
 
-State()::~State(){
+State::~State(){
 
 }

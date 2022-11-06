@@ -81,12 +81,12 @@ clean: CMakeFiles/robotclient.dir/clean
 CMakeFiles/robotclient.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/robotclient.dir/build.make CMakeFiles/robotclient.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/robotclient.dir/build.make CMakeFiles/robotclient.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/yd/Documents/robots_class_OOP/build/CMakeFiles --progress-num=1,2,3,4,5 "Built target robotclient"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/yd/Documents/robots_class_OOP/build/CMakeFiles --progress-num=1,2,3,4 "Built target robotclient"
 .PHONY : CMakeFiles/robotclient.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/robotclient.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/yd/Documents/robots_class_OOP/build/CMakeFiles 5
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/yd/Documents/robots_class_OOP/build/CMakeFiles 4
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/robotclient.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/yd/Documents/robots_class_OOP/build/CMakeFiles 0
 .PHONY : CMakeFiles/robotclient.dir/rule

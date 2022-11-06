@@ -18,10 +18,12 @@ class Player{
 	Player();
 	
 	Player(string name, int x, int y);
-	string get_name(void);
+	
+	
 	void set_x(int x);
         void set_y(int y);
         void set_xy(int x, int y);
+      
         double distance(int x, int y);
         double distance(Player another);
 
@@ -29,6 +31,8 @@ class Player{
         int get_y(void);
         int get_xy(void);
 	
+	string get_name(void);
+	string get_position(void);
 	
 	~Player();
 };

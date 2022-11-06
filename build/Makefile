@@ -201,30 +201,6 @@ src/socket.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/robotclient.dir/build.make CMakeFiles/robotclient.dir/src/socket.cpp.s
 .PHONY : src/socket.cpp.s
 
-src/state.o: src/state.cpp.o
-.PHONY : src/state.o
-
-# target to build an object file
-src/state.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/robotclient.dir/build.make CMakeFiles/robotclient.dir/src/state.cpp.o
-.PHONY : src/state.cpp.o
-
-src/state.i: src/state.cpp.i
-.PHONY : src/state.i
-
-# target to preprocess a source file
-src/state.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/robotclient.dir/build.make CMakeFiles/robotclient.dir/src/state.cpp.i
-.PHONY : src/state.cpp.i
-
-src/state.s: src/state.cpp.s
-.PHONY : src/state.s
-
-# target to generate assembly for a file
-src/state.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/robotclient.dir/build.make CMakeFiles/robotclient.dir/src/state.cpp.s
-.PHONY : src/state.cpp.s
-
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -243,9 +219,6 @@ help:
 	@echo "... src/socket.o"
 	@echo "... src/socket.i"
 	@echo "... src/socket.s"
-	@echo "... src/state.o"
-	@echo "... src/state.i"
-	@echo "... src/state.s"
 .PHONY : help
 
 

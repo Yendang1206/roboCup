@@ -5,7 +5,7 @@ using namespace std;
 
 class State{
     private:
-        Player R3("3",3,10);
+        Player R3();
         
         /*
         Player r1();

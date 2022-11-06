@@ -5,7 +5,7 @@
 #include <unistd.h>
 #include "socket.hpp"
 #include "player.hpp"
-#include "state.hpp"
+
 
 using namespace std;
 
@@ -20,11 +20,16 @@ vector<string> split(string &s, char delim){
     return output;
 }
 
+
+
 int main(int argc, char *argv[]){
    
-    Player R3("3",3,10);
+    Player B("b",0,0);
+    Player R1("1",0,0);
+    Player R2("2",0,0);
+    Player R3("3",0,0);
     Player R4("4",0,0);
-   
+    Player R5("5",0,0);
     
     cout<<R3.get_x()<<endl;
     cout<<R3.get_y()<<endl;
@@ -54,7 +59,7 @@ int main(int argc, char *argv[]){
     string Temporary = "3,x1,y1";
     string place;
     
-    State field; 
+   
     
     
     
@@ -83,10 +88,11 @@ int main(int argc, char *argv[]){
         //2 functions: - playstate.set_state(buffer)
         //             position = playstate.get_position()
         
-        field.set_state(buffer); //input la buffer, output: void
+        //field.set_state(buffer); //input la buffer, output: void
         
-        //data = split(buffer, ':');
-        /*
+        
+        data = split(buffer, ':');
+        
         
         //cout<<data.at(0)<<endl; //vi la vector nen k cout dc 
         //cout<<data.at(1)<<endl; //day ve gia tri string nhu dong 66 de cout
@@ -99,8 +105,9 @@ int main(int argc, char *argv[]){
         
         int x = stoi(data.at(0)); //toa do x_Ball
 	int y = stoi(data.at(1)); //toa do y_Ball
-
-	cout <<"Toa do x,y cua Ball: "<< "x: " << x << " " << "y: " << y << endl;
+        B.set_xy(x,y);
+        
+	cout <<"Toa do x,y cua Ball: "<<B.get_position()<< endl;
 	string Ballposition = R3.get_name() + "," + to_string(x) + "," + to_string(y) + "\n";
 	
 	//toa do Temporary
@@ -138,7 +145,7 @@ int main(int argc, char *argv[]){
 	string newPosition = R3.get_name() + "," + to_string(x_p) + "," + to_string(y_p) + "\n";
 	
 	Temporary = newPosition;
-	*/
+	
     }
     sock->close();
 

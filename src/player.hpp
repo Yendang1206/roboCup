@@ -7,7 +7,7 @@ using namespace std;
 
 class Player{
 
-    private:
+    protected:
 
 	string name;
 	int x;
@@ -16,6 +16,7 @@ class Player{
     public:
 
 	Player();
+	
 	Player(string name, int x, int y);
 	string get_name(void);
 	void set_x(int x);

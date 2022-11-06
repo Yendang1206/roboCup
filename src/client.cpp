@@ -3,170 +3,117 @@
 #include <memory>
 #include <sstream>
 #include <unistd.h>
-
 #include "socket.hpp"
 #include "player.hpp"
 
 using namespace std;
 
 vector<string> split(string &s, char delim){
-	vector<string> output;
-	
-	stringstream ss(s);
-	string sub;
-
-	while(getline(ss, sub, delim)){
-		output.push_back(sub);
-	}
-
-	return output;
+    vector<string> output;
+    stringstream ss(s);
+    string sub;
+    
+    while(getline(ss, sub, delim)){
+        output.push_back(sub);
+    }
+    return output;
 }
-
 
 int main(int argc, char *argv[]){
     
-    Player R3("3", 3, 10);
-    Player R4("4", 0, 0);
-
-    cout << R3.get_x() << endl;
-    cout << R3.get_y() << endl;
-    cout <<"Khoang cach R3 "<<R3.distance(R4)<<endl;
-    cout << R3.get_name()<< endl;
-    //cout <<"Khoang cach R4 "<<R4.distance(R4)<<endl;
-    cout <<"================"<<endl;
+    Player R3("3",3,10);
+    Player R4("4",0,0);
+   
     
-    string ip = "localhost";
-    string port = "10000"; //let's talk on http port
+    cout<<R3.get_x()<<endl;
+    cout<<R3.get_y()<<endl;
+    cout<<"Khoang cach R3: "<<R3.distance(R4)<<endl;
+    cout<<"Robot number "<<R3.get_name()<<endl;
+    cout<<"--------------------"<<endl;
+    
 
-    std::unique_ptr<Socket> sock(new Socket(AF_INET,SOCK_STREAM,0));
+    string ip= "localhost";
+    string port = "10000";
+    unique_ptr<Socket> sock(new Socket(AF_INET,SOCK_STREAM,0));
     sock->connect(ip, port);
-
-    //sock->socket_write("3000,1000\n");
-
-    //int seconds = 10;
-
     vector<Socket> reads(1);
-
     reads[0] = *sock;
     string buffer;
-
-    /*
-    if(sock->select(&reads, NULL, NULL, seconds) < 1){
-	sock->socket_write("100,100\n");
-    }else{
-        string buffer;
-        sock->socket_read(buffer, 1024);
-        cout << buffer << endl;
-    }
-    */
+    
     vector<string> data;
     vector<string> lines;
     vector<string> linedata;
     vector<string> dataContent;
-    //vector<string> DesTem;
-    //vector<string> DesBall;
     
-    string position = "4,0,1000\n"; //toa do ban dau cua R3, gui message thi can '\n"
-    string label;
+    string position = "3,0,500\n"; //toa do ban dau cua R3
+    string newPosition = "3,x_p,y_p\n"; //toa do moi cua R3
     string line;
-    string labelname;
+    string label;
     string labelposition;
-    //string Destination = "4800,1650";
-    string Temporary =  "x1, y1";
-	
-	
+    string Temporary = "3,x1,y1";
+    string place;
+    
     while(1){
-	cout << position << endl; 
-	sock->socket_write(position);
-	sock->socket_read(buffer, 1024); //doc toa do dc gui ve trong buffer
-	sleep(3);
-	cout <<"================"<<endl;
-	cout << buffer << endl; //in ra toa do dc gui ve
-	cout <<"================"<<endl;
-	//data = split(buffer, ':');
-	lines = split(buffer, '\n'); //chia ra tung dong
-	line = lines.at(0); 
-	//linedata = split(lines.at(0), ':'); 
-	cout<<"dong line [0]: "<<line<<endl;
+        cout <<position<<endl;
+        sock->socket_write(position);
+        //sock->socket_write(newPosition);
+        sock->socket_read(buffer,1024);
+        sleep(3);
+        
+        cout <<"=========Begin========"<<endl;
+        cout<<buffer<<endl;
+        cout <<"**********End*********"<<endl;
+        
+        data = split(buffer, ':');
+        //cout<<data.at(0)<<endl; //vi la vector nen k cout dc 
+        //cout<<data.at(1)<<endl; //day ve gia tri string nhu dong 66 de cout
+        
+        label = data.at(0);
+        cout<<"label: "<<label<<endl;
+        
+        labelposition = data.at(1);
+        data = split(labelposition, ',');
+        
+        int x = stoi(data.at(0)); //toa do x_Ball
+	int y = stoi(data.at(1)); //toa do y_Ball
+
+	cout <<"Toa do x,y cua Ball: "<< "x: " << x << " " << "y: " << y << endl;
+	string Ballposition = R3.get_name() + "," + to_string(x) + "," + to_string(y) + "\n";
 	
-	label = split(line, ':'); 
-	labelname = label.at(0);
-	cout<<"label: "<<labelname<<endl;//in ra "B"
+	//toa do Temporary
+	string x1 = to_string(4800 + int((x-4800)*float(1.1)));
+	string y1 = to_string(1650 + int((y-1650)*float(1.1)));
 	
-	
-	/*
-	label = split(lines.at(0), '\n'); //dong line dau tien 
-	labelname = label.at(0); //in ra B, R1, R2
-	cout<<"label: "<<labelname<<endl;//in ra "B"
-	labelposition = label.at(1);
-	linedata = split(labelposition, ',');
-	cout<<"line data vi tri 0: "<<linedata.at(0)<<endl;
-	
-	cout<<"line data vi tri 1: "<<linedata.at(1)<<endl;
-	
-	*/
-	//cout << data.at(0) << endl;	
-	//cout << data.at(1) << endl;
-	
-	/*
-	
-	int x = std::stoi(linedata.at(0)); //in ra toa do x cua Ball
-	int y = std::stoi(linedata.at(1)); //in ra toa do y cua Ball
-	cout << "x: " << x << " " << "y: " << y << endl;
-	string Ballposition = std::to_string(x) + "," + std::to_string(y) + "\n";
-	
-	
-	//toa do DB de tinh toa do Tem
-	//DesBall.at(0) = (x-4800)*float(1.1);
-	//DesBall.at(1) = (y-1650)*float(1.1);
-	
-	//toa do Temporary make
-	string x1 = std::to_string(4800 + int((x-4800)*float(1.1)));
-	string y1 = std::to_string(1650 + int((y-1650)*float(1.1)));
-	
-	//cout<<"toa do x cua Tem"<<Temporary.at(0)<<"toa do y cua Tem"<<Temporary.at(1)<<endl; -> phai day vao ham string thi moi cout dc	
-	string Temporary = x1 + "," + y1 + "\n";
-	//position = Temporary;
-	cout<<"toa do tem: "<<Temporary<<endl;
-	sock->socket_write(Temporary);
-	//sock->socket_read(buffer, 1024);
-	linedata = split(buffer, ',');
+	string Temporary = R3.get_name() + "," + x1 + "," + y1 + "\n";
+        cout<<"toa do temporary: "<<Temporary<<endl;
+	sock->socket_write(Temporary);	
 	sleep(3); 
 	
-	*/
-
-	/*string A = "2160,1650\n";
-	sock->socket_write(A);
-	sock->socket_read(buffer, 1024);
-	cout<<"line 63: toa do diem A"<<A<<endl;
-	cout << buffer << endl;
-	data = split(buffer, ',');
-	sleep(3);*/
-	
-	
-	/*
-	//string Ballposition;
 	sock->socket_write(Ballposition);
-	//sock->socket_read(buffer, 1024);
-	cout<<"line 70: toa do diem Ball"<<Ballposition<<endl;
-	cout << buffer << endl;
-	linedata = split(buffer, ',');
+	cout<<"toa do diem Ball: "<<Ballposition<<endl;
+	//cout<<"Toa do updated: " << buffer << endl;
 	
-	*/
-	
-	//cout << data.at(0) << endl;	
-	//cout << data.at(1) << endl;
-
-	/* get integers */
-
-	//int x = std::stoi(data.at(0));
-	//int y = std::stoi(data.at(1));
-
-	//cout << "x: " << x << " " << "y: " << y << endl;
-	
-	//position = std::to_string(x) + "," + std::to_string(y) + "\n";
-	//cout << position << endl; 
 	sleep(3);
+	
+	data = split(buffer, ':');
+	
+	//toa do moi
+	place = data.at(0);
+        cout<<"Vi tri moi: "<<place<<endl;
+        
+	newPosition = data.at(1);
+        data = split(newPosition, ',');
+        
+        int x_p = data.at(0); //toa do moi
+        int y_p = data.at(1); //toa do moi
+	
+	cout <<"Toa do moi: "<< "new x: " << x_p << " " << "new y: " << y_p << endl;
+	
+	string newPosition = R3.get_name() + "," + to_string(x_p) + "," + to_string(y_p) + "\n";
+	
+	position = newPosition;
     }
     sock->close();
+
+
 }

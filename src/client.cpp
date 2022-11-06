@@ -5,6 +5,7 @@
 #include <unistd.h>
 #include "socket.hpp"
 #include "player.hpp"
+#include "state.hpp"
 
 using namespace std;
 
@@ -20,7 +21,7 @@ vector<string> split(string &s, char delim){
 }
 
 int main(int argc, char *argv[]){
-    
+   
     Player R3("3",3,10);
     Player R4("4",0,0);
    
@@ -45,7 +46,7 @@ int main(int argc, char *argv[]){
     vector<string> linedata;
     vector<string> dataContent;
     
-    string position = "3,0,500\n"; //toa do ban dau cua R3
+    string position = "3,0,1650\n"; //toa do Goal
     string newPosition = "3,x_p,y_p\n"; //toa do moi cua R3
     string line;
     string label;
@@ -53,18 +54,40 @@ int main(int argc, char *argv[]){
     string Temporary = "3,x1,y1";
     string place;
     
+    State field; 
+    
+    
+    
+    //doc toa do cua cac robot, ball -> gan nhat -> chay toi toa do temporary -> sut bong
+    //if khong gan ball -> tiep tuc di chuyen tip toi temporary -> sut bong
+    
+    //toa do ball -> tinh toa do temporary -> tim khoang cach cua con robot nao gan nhat vs toa do temporary
+    //neu khoang cach nho nhat ma minh tim duoc < int((x-4800)*float(1.1)) : move to temporary position --> sut bong (move to ballposition) 
+    
     while(1){
         cout <<position<<endl;
         sock->socket_write(position);
         //sock->socket_write(newPosition);
         sock->socket_read(buffer,1024);
-        sleep(3);
+        sleep(0.02);
+        
         
         cout <<"=========Begin========"<<endl;
         cout<<buffer<<endl;
         cout <<"**********End*********"<<endl;
         
-        data = split(buffer, ':');
+        //TODO: position = ?
+        
+        //tao class PlayerState playstate(); 
+        
+        //2 functions: - playstate.set_state(buffer)
+        //             position = playstate.get_position()
+        
+        field.set_state(buffer); //input la buffer, output: void
+        
+        //data = split(buffer, ':');
+        /*
+        
         //cout<<data.at(0)<<endl; //vi la vector nen k cout dc 
         //cout<<data.at(1)<<endl; //day ve gia tri string nhu dong 66 de cout
         
@@ -87,7 +110,10 @@ int main(int argc, char *argv[]){
 	string Temporary = R3.get_name() + "," + x1 + "," + y1 + "\n";
         cout<<"toa do temporary: "<<Temporary<<endl;
 	sock->socket_write(Temporary);	
-	sleep(3); 
+	sock->socket_read(buffer,1024);
+	sleep(0.02); 
+	
+	//lay toa do R3 va toa do Ball, tinh khoang cach R3 vs Ball
 	
 	sock->socket_write(Ballposition);
 	cout<<"toa do diem Ball: "<<Ballposition<<endl;
@@ -104,14 +130,15 @@ int main(int argc, char *argv[]){
 	newPosition = data.at(1);
         data = split(newPosition, ',');
         
-        int x_p = data.at(0); //toa do moi
-        int y_p = data.at(1); //toa do moi
+        int x_p = stoi(data.at(0)); //toa do moi
+        int y_p = stoi(data.at(1)); //toa do moi
 	
 	cout <<"Toa do moi: "<< "new x: " << x_p << " " << "new y: " << y_p << endl;
 	
 	string newPosition = R3.get_name() + "," + to_string(x_p) + "," + to_string(y_p) + "\n";
 	
-	position = newPosition;
+	Temporary = newPosition;
+	*/
     }
     sock->close();
 

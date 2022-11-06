@@ -1,0 +1,3 @@
+/home/yd/Documents/robots_class_OOP/build/CMakeFiles/rebuild_cache.dir
+/home/yd/Documents/robots_class_OOP/build/CMakeFiles/edit_cache.dir
+/home/yd/Documents/robots_class_OOP/build/CMakeFiles/robotclient.dir

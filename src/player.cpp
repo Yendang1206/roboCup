@@ -1,4 +1,9 @@
 #include "player.hpp"
+#include <memory>
+#include <sstream>
+#include <unistd.h>
+#include <string.h>
+#include "socket.hpp"
 
 Player::Player(){
     
@@ -20,6 +25,27 @@ void Player::set_y(int y){
 void Player::set_xy(int x,int y){
     this->x = x;
     this->y = y;
+}
+
+void Player::set_linedata(string line){
+     
+     string label;
+     vector<string> linedata;
+     string labelposition;
+     
+     
+     cout<<"line thu 1: "<<line<<endl;
+        
+     linedata = split2(line, ':'); //vector
+     label = linedata.at(0);  //string
+     this->name = label;  
+     cout<<"lable cua dong thu 1: "<<label<<endl;
+     labelposition = linedata.at(1); //string
+     data = split2(labelposition, ',');
+     
+     this->x = stoi(data.at(0));
+     this->y = stoi(data.at(1)); 
+     
 }
 
 double Player::distance(int x, int y){

@@ -2,8 +2,20 @@
 #include <string.h>
 #include <vector>
 #include <math.h>
+#include <sstream>
 
 using namespace std;
+
+vector<string> split2(string &s, char delim){
+    vector<string> output;
+    stringstream ss(s);
+    string sub;
+    
+    while(getline(ss, sub, delim)){
+        output.push_back(sub);
+    }
+    return output;
+}
 
 class Player{
 
@@ -23,6 +35,8 @@ class Player{
 	void set_x(int x);
         void set_y(int y);
         void set_xy(int x, int y);
+        void set_linedata(string line);
+        
       
         double distance(int x, int y);
         double distance(Player another);
@@ -33,6 +47,7 @@ class Player{
 	
 	string get_name(void);
 	string get_position(void);
+	
 	
 	~Player();
 };

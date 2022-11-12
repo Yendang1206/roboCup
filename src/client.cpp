@@ -5,6 +5,7 @@
 #include <unistd.h>
 #include "socket.hpp"
 #include "player.hpp"
+#include "network.hpp"
 
 
 using namespace std;
@@ -23,6 +24,8 @@ vector<string> split(string &s, char delim){
 
 
 int main(int argc, char *argv[]){
+    
+    Network network("localhost", "10000");
    
     Player B("b",0,0);
     Player R1("1",0,0);
@@ -37,6 +40,8 @@ int main(int argc, char *argv[]){
     cout<<"Robot number "<<R3.get_name()<<endl;
     cout<<"--------------------"<<endl;
     
+    
+    // ---> class Network
 
     string ip= "localhost";
     string port = "10000";
@@ -45,14 +50,19 @@ int main(int argc, char *argv[]){
     vector<Socket> reads(1);
     reads[0] = *sock;
     string buffer;
+    //----end of class Network
+    
+    
+    //class objects: ball, player, opp
+    
+    //class Parser
     
     vector<string> data;
-    vector<string> lines;
+    vector<string> lines;    
     vector<string> linedata;
     vector<string> dataContent;
     
-    string position = "3,0,1650\n"; //toa do Goal
-    string newPosition = "3,x_p,y_p\n"; //toa do moi cua R3
+    string position = "3,0,1000\n"; //toa do Goal
     string line;
     string label;
     string labelposition;
@@ -71,10 +81,12 @@ int main(int argc, char *argv[]){
     
     while(1){
         cout <<position<<endl;
+        /*
         sock->socket_write(position);
-        //sock->socket_write(newPosition);
         sock->socket_read(buffer,1024);
-        sleep(3);
+        sleep(0.5); */
+        
+        buffer = network.get_message(position); //input: position, output: buffer
         
         
         cout <<"=========Begin========"<<endl;
@@ -95,7 +107,7 @@ int main(int argc, char *argv[]){
         
         //data = split(buffer, ':');
         
-        line = lines.at(0); //string
+        //line = lines.at(0); //string
         
         /*
         cout<<"line thu 1: "<<line<<endl;
@@ -118,8 +130,10 @@ int main(int argc, char *argv[]){
         
         */
         
+        /*
         
-        B.set_linedata(line);
+        B.set_linedata(lines.at(0));
+       
         
         
 	cout <<"Toa do x,y cua Ball: "<<B.get_position()<< endl;
@@ -132,17 +146,13 @@ int main(int argc, char *argv[]){
 	
 	
 	
-	
-	
 	//toa do Temporary
 	string x1 = to_string(4800 + int((B.get_x()-4800)*float(1.1)));
 	string y1 = to_string(1650 + int((B.get_y()-1650)*float(1.1)));
 	
 	string Temporary = R3.get_name() + "," + x1 + "," + y1 + "\n";
         cout<<"toa do temporary: "<<Temporary<<endl;
-	//sock->socket_write(Temporary);	
-	sock->socket_read(buffer,1024);
-	sleep(3); 
+	
 	
 	//lay toa do R3 va toa do Ball, tinh khoang cach R3 vs Ball
 	
@@ -150,25 +160,11 @@ int main(int argc, char *argv[]){
 	//cout<<"toa do diem Ball: "<<Ballposition<<endl;
 	//cout<<"Toa do updated: " << buffer << endl;
 	
-	sleep(3);
+
 	
-	data = split(buffer, ':');
+
 	
-	//toa do moi
-	place = data.at(0);
-        cout<<"Vi tri moi: "<<place<<endl;
-        
-	newPosition = data.at(1);
-        data = split(newPosition, ',');
-        
-        int x_p = stoi(data.at(0)); //toa do moi
-        int y_p = stoi(data.at(1)); //toa do moi
-	
-	cout <<"Toa do moi: "<< "new x: " << x_p << " " << "new y: " << y_p << endl;
-	
-	string newPosition = R3.get_name() + "," + to_string(x_p) + "," + to_string(y_p) + "\n";
-	
-	Temporary = newPosition;
+	*/
 	
     }
     sock->close();

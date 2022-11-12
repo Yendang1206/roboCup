@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.7)
 
 project(sockets)
 
-set(CLIENT  src/socket.cpp src/client.cpp src/player.cpp)
+set(CLIENT  src/socket.cpp src/client.cpp src/player.cpp src/network.cpp)
 
 add_compile_options(-Wall -Werror)
 

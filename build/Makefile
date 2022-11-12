@@ -153,6 +153,30 @@ src/client.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/robotclient.dir/build.make CMakeFiles/robotclient.dir/src/client.cpp.s
 .PHONY : src/client.cpp.s
 
+src/network.o: src/network.cpp.o
+.PHONY : src/network.o
+
+# target to build an object file
+src/network.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/robotclient.dir/build.make CMakeFiles/robotclient.dir/src/network.cpp.o
+.PHONY : src/network.cpp.o
+
+src/network.i: src/network.cpp.i
+.PHONY : src/network.i
+
+# target to preprocess a source file
+src/network.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/robotclient.dir/build.make CMakeFiles/robotclient.dir/src/network.cpp.i
+.PHONY : src/network.cpp.i
+
+src/network.s: src/network.cpp.s
+.PHONY : src/network.s
+
+# target to generate assembly for a file
+src/network.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/robotclient.dir/build.make CMakeFiles/robotclient.dir/src/network.cpp.s
+.PHONY : src/network.cpp.s
+
 src/player.o: src/player.cpp.o
 .PHONY : src/player.o
 
@@ -213,6 +237,9 @@ help:
 	@echo "... src/client.o"
 	@echo "... src/client.i"
 	@echo "... src/client.s"
+	@echo "... src/network.o"
+	@echo "... src/network.i"
+	@echo "... src/network.s"
 	@echo "... src/player.o"
 	@echo "... src/player.i"
 	@echo "... src/player.s"

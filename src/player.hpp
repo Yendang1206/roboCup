@@ -10,7 +10,7 @@ using namespace std;
 
 class Player{
 
-    protected:
+    private:
 
 	string name;
 	int x;

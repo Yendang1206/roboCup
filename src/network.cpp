@@ -9,8 +9,6 @@ Network::Network(string ip, string port){
     this->ip = ip;
     this->port = port;
     this->sock->connect(ip, port);
-    vector<Socket> reads(1);
-    reads[0] = *sock;
 } 
 
 string Network::get_message(string position){

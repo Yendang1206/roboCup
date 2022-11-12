@@ -93,6 +93,11 @@ int main(int argc, char *argv[]){
         cout<<buffer<<endl;
         cout <<"**********End*********"<<endl;
         
+        sleep(2);
+        
+        
+
+        
         //TODO: position = ?
         
         //tao class PlayerState playstate(); 
@@ -103,43 +108,42 @@ int main(int argc, char *argv[]){
         //field.set_state(buffer); //input la buffer, output: void
         
         
-        lines = split(buffer, '\n'); //vector
+       //lines = split(buffer, '\n'); //vector 
         
         //data = split(buffer, ':');
         
         //line = lines.at(0); //string
         
-        /*
-        cout<<"line thu 1: "<<line<<endl;
         
-        linedata = split(line, ':'); //vector
-        label = linedata.at(0);  //string
+       // cout<<"line thu 1: "<<line<<endl;
         
-        cout<<"lable cua dong thu 1: "<<label<<endl;
+       // linedata = split(line, ':'); //vector
+       // label = linedata.at(0);  //string
+        
+      //  cout<<"lable cua dong thu 1: "<<label<<endl;
         
 
-        labelposition = linedata.at(1); //string
-        data = split(labelposition, ',');
+       // labelposition = linedata.at(1); //string
+     //   data = split(labelposition, ',');
         
         //cout<<data.at(0)<<endl; //vi la vector nen k cout dc 
         //cout<<data.at(1)<<endl; //day ve gia tri string nhu dong 66 de cout
         
-        int x = stoi(data.at(0)); //toa do x_Ball
-	int y = stoi(data.at(1)); //toa do y_Ball
-        B.set_xy(x,y);
+      //  int x = stoi(data.at(0)); //toa do x_Ball
+//	int y = stoi(data.at(1)); //toa do y_Ball
+    //    B.set_xy(x,y);
         
-        */
         
-        /*
         
-        B.set_linedata(lines.at(0));
+        
+        //B.set_linedata(lines.at(0));
        
         
         
-	cout <<"Toa do x,y cua Ball: "<<B.get_position()<< endl;
+	//cout <<"Toa do x,y cua Ball: "<<B.get_position()<< endl;
 	//string Ballposition = R3.get_name() + "," + to_string(x) + "," + to_string(y) + "\n";
 	
-	cout <<"--End of toa do diem Ball--"<<endl;
+	//cout <<"--End of toa do diem Ball--"<<endl;
 	
 	
 	
@@ -147,11 +151,11 @@ int main(int argc, char *argv[]){
 	
 	
 	//toa do Temporary
-	string x1 = to_string(4800 + int((B.get_x()-4800)*float(1.1)));
-	string y1 = to_string(1650 + int((B.get_y()-1650)*float(1.1)));
+	//string x1 = to_string(4800 + int((B.get_x()-4800)*float(1.1)));
+	//string y1 = to_string(1650 + int((B.get_y()-1650)*float(1.1)));
 	
-	string Temporary = R3.get_name() + "," + x1 + "," + y1 + "\n";
-        cout<<"toa do temporary: "<<Temporary<<endl;
+	//string Temporary = R3.get_name() + "," + x1 + "," + y1 + "\n";
+        //cout<<"toa do temporary: "<<Temporary<<endl;
 	
 	
 	//lay toa do R3 va toa do Ball, tinh khoang cach R3 vs Ball
@@ -159,12 +163,9 @@ int main(int argc, char *argv[]){
 	//sock->socket_write(Ballposition);
 	//cout<<"toa do diem Ball: "<<Ballposition<<endl;
 	//cout<<"Toa do updated: " << buffer << endl;
-	
 
 	
 
-	
-	*/
 	
     }
     sock->close();

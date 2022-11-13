@@ -26,12 +26,12 @@ int main(int argc, char *argv[]){
     
     
    
-    Player B("b",0,0);
+    Player B("b",2400,1650);
     Player R1("1",0,0);
     Player R2("2",0,0);
     Player R3("3",0,0);
     Player R4("4",0,0);
-    Player R5("5",0,0);
+    Player R5("5",0,1650);
     
     Player Tem("t",0,0);
     
@@ -40,12 +40,18 @@ int main(int argc, char *argv[]){
     //cout<<"Khoang cach R3: "<<R3.distance(R4)<<endl;
     //cout<<"Robot number "<<R3.get_name()<<endl;
     //cout<<"--------------------"<<endl;
+    
+    
+    
    
+     
+    
+   // double soccer_list[4]={R1.distance(Tem), R2.distance(Tem), R3.distance(Tem), R4.distance(Tem)};
     
     
-    string position = "3,0,1000\n"; //toa do Goal
+    string position = R5.get_position(); //toa do Goal
     
-    string Temporary = "3,x1,y1";
+    //string Temporary = "3,x1,y1";
     
     //doc toa do cua cac robot, ball -> gan nhat -> chay toi toa do temporary -> sut bong
     //if khong gan ball -> tiep tuc di chuyen tip toi temporary -> sut bong
@@ -102,6 +108,27 @@ int main(int argc, char *argv[]){
             }
         }
         
+        Tem.set_x(4800 + int((B.get_x()-4800)*float(1.01)));
+        Tem.set_y(1650 + int((B.get_y()-1650)*float(1.01)));
+    
+        cout<<"toa do tem_x,y: "<<Tem.get_position()<<endl;
+        
+        cout<<"R1 vs Tem: "<<R1.distance(Tem)<<endl;
+        cout<<"R2 vs Tem: "<<R2.distance(Tem)<<endl;
+        cout<<"R3 vs Tem: "<<R3.distance(Tem)<<endl;
+        cout<<"R4 vs Tem: "<<R4.distance(Tem)<<endl;
+        
+        
+        double soccer_list[]={R1.distance(Tem), R2.distance(Tem), R3.distance(Tem), R4.distance(Tem)};
+        //cout << "list of soccer: "<<soccer_list[0]<<endl;
+        double min = 9000.0;
+            
+        for (int i=0;i<4;i++){
+           if(soccer_list[i] < min){
+              min = soccer_list[i];
+           }
+	}   
+	cout<<"min dis: "<<min<<endl;
 	
     }
     network.close_connect();

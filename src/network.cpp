@@ -20,6 +20,13 @@ string Network::get_message(string position){
 }
 
 
+void Network::close_connect(){
+    
+    this->sock->close();
+    
+}
+
+
     
 Network::~Network(){
 

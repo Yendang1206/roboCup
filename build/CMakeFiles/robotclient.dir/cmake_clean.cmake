@@ -3,6 +3,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/robotclient.dir/src/client.cpp.o.d"
   "CMakeFiles/robotclient.dir/src/network.cpp.o"
   "CMakeFiles/robotclient.dir/src/network.cpp.o.d"
+  "CMakeFiles/robotclient.dir/src/parser.cpp.o"
+  "CMakeFiles/robotclient.dir/src/parser.cpp.o.d"
   "CMakeFiles/robotclient.dir/src/player.cpp.o"
   "CMakeFiles/robotclient.dir/src/player.cpp.o.d"
   "CMakeFiles/robotclient.dir/src/socket.cpp.o"

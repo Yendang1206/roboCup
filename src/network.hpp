@@ -1,3 +1,7 @@
+#ifndef NETWORK
+#define NETWORK
+
+
 #include <iostream>
 #include <vector>
 #include <memory>
@@ -17,7 +21,9 @@ public:
     Network();
     Network(string ip, string port);
     string get_message(string position);
-
+    void close_connect();
 
     ~Network();
 };
+#endif
+

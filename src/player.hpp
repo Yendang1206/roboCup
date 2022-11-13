@@ -1,3 +1,7 @@
+#ifndef PLAYER
+#define PLAYER
+
+
 #include <iostream>
 #include <string.h>
 #include <vector>
@@ -21,6 +25,7 @@ class Player{
 	Player();
 	
 	Player(string name, int x, int y);
+	
 	vector<string> split(string &s, char delim);
 	
 	void set_x(int x);
@@ -35,6 +40,7 @@ class Player{
         int get_x(void);
         int get_y(void);
         int get_xy(void);
+        
 	
 	string get_name(void);
 	string get_position(void);
@@ -42,3 +48,4 @@ class Player{
 	
 	~Player();
 };
+#endif

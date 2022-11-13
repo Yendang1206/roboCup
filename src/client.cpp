@@ -35,6 +35,7 @@ int main(int argc, char *argv[]){
     
     Player Tem("t",0,0);
     
+    
     //cout<<R3.get_x()<<endl;
     //cout<<R3.get_y()<<endl;
     //cout<<"Khoang cach R3: "<<R3.distance(R4)<<endl;
@@ -108,8 +109,8 @@ int main(int argc, char *argv[]){
             }
         }
         
-        Tem.set_x(4800 + int((B.get_x()-4800)*float(1.01)));
-        Tem.set_y(1650 + int((B.get_y()-1650)*float(1.01)));
+        Tem.set_x(4800 + int((B.get_x()-4800)*float(1.05)));
+        Tem.set_y(1650 + int((B.get_y()-1650)*float(1.05)));
     
         cout<<"toa do tem_x,y: "<<Tem.get_position()<<endl;
         
@@ -122,13 +123,25 @@ int main(int argc, char *argv[]){
         double soccer_list[]={R1.distance(Tem), R2.distance(Tem), R3.distance(Tem), R4.distance(Tem)};
         //cout << "list of soccer: "<<soccer_list[0]<<endl;
         double min = 9000.0;
-            
+        int min_index;   
         for (int i=0;i<4;i++){
            if(soccer_list[i] < min){
               min = soccer_list[i];
+              min_index = i+1;
            }
 	}   
 	cout<<"min dis: "<<min<<endl;
+	cout<<"min index: "<<min_index<<endl;
+	
+	if(min<=3){
+	   Player new_position(to_string(min_index),B.get_x(),B.get_y());
+	   position = new_position.get_position();
+	
+	}
+	else{
+	   Player new_position(to_string(min_index),Tem.get_x(),Tem.get_y());
+	   position = new_position.get_position();
+	}
 	
     }
     network.close_connect();

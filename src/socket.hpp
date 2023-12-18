@@ -1,11 +1,7 @@
-//
 //  socket.hpp
 //  SocketServer
-//
 //  Created by Kay Makowsky on 14.06.16.
 //  Copyright © 2016 Kay Makowsky. All rights reserved.
-//
-
 #ifndef SOCKET_H
 #define SOCKET_H
 #include <iostream>
@@ -22,9 +18,7 @@
 #include <vector>
 #include <sys/un.h>
 #include <errno.h>
-
 #include <memory>
-
 using namespace std;
 
 class Socket

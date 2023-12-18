@@ -1,10 +1,7 @@
-//
 //  socket.cpp
 //  SocketServer
-//
 //  Created by Kay Makowsky on 15.06.16.
 //  Copyright © 2016 Kay Makowsky. All rights reserved.
-//
 
 #include "socket.hpp"
 
@@ -78,7 +75,6 @@ int Socket::connect(string ip, string port){
         return status;
     }
     
-    
     address = ip;
     this->port = port;
     struct addrinfo *res;
@@ -134,6 +130,7 @@ std::unique_ptr<Socket> Socket::accept(){
     newSocket->address_info.ai_addr = (struct sockaddr *)&their_addr;
     return newSocket;
 }
+
 int Socket::socket_write(string msg){
     const char * buf = msg.c_str();
     int len = (int)strlen(buf);
@@ -144,6 +141,7 @@ int Socket::socket_write(string msg){
     }
     return status;
 }
+
 int Socket::socket_safe_read(string &buf,int len,int seconds){
     vector<Socket> reads;
     reads.push_back(*this);
@@ -163,6 +161,7 @@ int Socket::socket_safe_read(string &buf,int len,int seconds){
     buf = string(buffer);
     return status;
 }
+
 int Socket::socket_read(string &buf,int len){
     char buffer[len];
     bzero(buffer,len);
@@ -174,6 +173,7 @@ int Socket::socket_read(string &buf,int len){
     buf = string(buffer);
     return status;
 }
+
 int Socket::socket_writeTo(string msg, string ip, string port){
     const char * buf = msg.c_str();
     int len = (int)strlen(buf);
@@ -196,6 +196,7 @@ int Socket::socket_writeTo(string msg, string ip, string port){
     }
     return status;
 }
+
 int Socket::socket_readFrom(string &buf, int len, string ip, string port){
     char buffer[len];
     bzero(buffer,len);
